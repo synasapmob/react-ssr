@@ -1,0 +1,19 @@
+{
+  "name": "esbuild-react-starter",
+  "version": "1.0.0",
+  "description": "starter for react using esbuild as a bundler",
+  "scripts": {
+    "start": "node build.js -watch"
+  },
+  "keywords": [
+    "esbuild",
+    "react"
+  ],
+  "author": "Hugh Haworth",
+  "license": "MIT",
+  "dependencies": {
+    "esbuild": "^0.8.46",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  }
+}
