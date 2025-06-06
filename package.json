@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "description": "starter for react using esbuild as a bundler",
   "scripts": {
-    "build": "node build.js",
-    "start": "node build.js -watch"
+    "start": "node --watch build.js"
   },
   "keywords": [
     "esbuild",

@@ -3,7 +3,6 @@ const fs = require("fs");
 const React = require("react");
 const http = require("http");
 const { renderToString } = require("react-dom/server");
-const path = require("path");
 
 const build_page = async (path) => {
   // 1. Bundle JSX with element
@@ -50,7 +49,7 @@ const build_page = async (path) => {
   `);
 
   // 4. Inject to root
-  const root_tree = fs.readFileSync("index.html").toString();
+  const root_tree = fs.readFileSync("public/index.html").toString();
   const html = renderToString(React.createElement(Component));
 
   return root_tree.replace(
@@ -104,23 +103,3 @@ const server = http.createServer(async (req, res) => {
 
 server.listen(3000);
 console.log("running port: 3000");
-
-const preRenderPages = async (pagesDir = "src/pages") => {
-  const pages = fs
-    .readdirSync(pagesDir)
-    .filter((file) => file.endsWith(".jsx"));
-
-  for (const file of pages) {
-    const name = file.replace(".jsx", "");
-    const html = await build_page(`${pagesDir}/${file}`);
-
-    const outPath = path.join(
-      "dist",
-      name === "app" ? "index.html" : `${name}.html`
-    );
-
-    fs.writeFileSync(outPath, html);
-  }
-};
-
-preRenderPages();
